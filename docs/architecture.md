@@ -47,22 +47,26 @@ session-manager/
 ## Key Decisions
 
 ### Go over Rust for backend
+
 - Backend runs as standalone HTTP daemon, spawned as Tauri sidecar process
 - Go chosen for familiarity (exec_runner.go, modernc.org/sqlite patterns from AgentBoard)
 - Rust's borrow checker adds friction for AI-generated code; Go compiles cleanly with less debugging
 - React Native mobile (future) requires network-callable backend anyway — sidecar architecture is correct regardless
 
 ### Tauri stays thin
+
 - `src-tauri/` only handles: window management, system tray, spawning Go backend as sidecar
 - All business logic (import, export, taxonomy, storage) lives in Go backend
 - This keeps Rust complexity minimal and allows RN to hit the same HTTP API
 
 ### Canonical schema as shared package
+
 - `packages/schema` defines the provider-agnostic session format
 - Both Go backend (storage/import/export) and TypeScript frontend depend on it
 - Future RN mobile imports the same schema — no duplication
 
 ### Backend is provider-agnostic
+
 - Does not know about Tauri, desktop, or mobile
 - Hooks trigger over HTTP directly — capture works even if no Tauri app is running
 - Enables GitHub sync (Phase 1.5) and future remote access from RN
@@ -82,11 +86,11 @@ cd apps/desktop && npm run dev
 
 ## API (to implement)
 
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | /health | Health check |
-| POST | /import | Import a session file |
-| GET | /sessions | List all sessions |
-| GET | /sessions/:id | Get session detail |
-| POST | /export | Export to provider format |
-| POST | /hooks/capture | Called by provider hooks |
+| Method | Path           | Description               |
+| ------ | -------------- | ------------------------- |
+| GET    | /health        | Health check              |
+| POST   | /import        | Import a session file     |
+| GET    | /sessions      | List all sessions         |
+| GET    | /sessions/:id  | Get session detail        |
+| POST   | /export        | Export to provider format |
+| POST   | /hooks/capture | Called by provider hooks  |

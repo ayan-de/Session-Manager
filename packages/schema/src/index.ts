@@ -1,7 +1,7 @@
 // Canonical session schema types
 export interface CanonicalSession {
   session_id: string;
-  source_provider: 'claude-code' | 'opencode';
+  source_provider: "claude-code" | "opencode";
   source_session_id: string;
   model: string;
   working_directory: string;
@@ -14,19 +14,19 @@ export interface CanonicalSession {
 
 export interface Turn {
   turn_id: string;
-  role: 'user' | 'assistant' | 'system';
+  role: "user" | "assistant" | "system";
   timestamp: string;
   content: ContentBlock[];
 }
 
 export type ContentBlock =
-  | { type: 'text'; text: string }
-  | { type: 'thinking'; text: string; provider_specific?: boolean }
+  | { type: "text"; text: string }
+  | { type: "thinking"; text: string; provider_specific?: boolean }
   | ToolCallBlock
   | ToolResultBlock;
 
 export interface ToolCallBlock {
-  type: 'tool_call';
+  type: "tool_call";
   tool_call_id: string;
   generic_type: GenericToolType;
   display_summary: string;
@@ -34,19 +34,19 @@ export interface ToolCallBlock {
 }
 
 export interface ToolResultBlock {
-  type: 'tool_result';
+  type: "tool_result";
   tool_call_id: string;
-  status: 'success' | 'error';
+  status: "success" | "error";
   content_summary: string;
   raw_provider_payload: Record<string, unknown>;
 }
 
 export type GenericToolType =
-  | 'file_read'
-  | 'file_write'
-  | 'file_edit'
-  | 'shell_exec'
-  | 'search'
-  | 'web_fetch'
-  | 'subagent_spawn'
-  | 'other';
+  | "file_read"
+  | "file_write"
+  | "file_edit"
+  | "shell_exec"
+  | "search"
+  | "web_fetch"
+  | "subagent_spawn"
+  | "other";
