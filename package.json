@@ -9,7 +9,22 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,css,json,md}\" --ignore-path .gitignore",
+    "format:check": "prettier --check \"**/*.{ts,tsx,css,json,md}\" --ignore-path .gitignore",
+    "frontend": "npm run dev -w apps/desktop",
+    "desktop": "npm run tauri dev -w apps/desktop",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "apps/desktop/**/*.{ts,tsx}": [
+      "prettier --write",
+      "npx eslint --fix -c apps/desktop/eslint.config.mjs"
+    ],
+    "apps/desktop/**/*.{css,json,md}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "turbo": "^2.0.0"
