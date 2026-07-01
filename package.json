@@ -1,0 +1,17 @@
+{
+  "name": "session-manager",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/backend"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0"
+  }
+}
