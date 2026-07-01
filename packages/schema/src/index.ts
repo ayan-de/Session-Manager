@@ -1,4 +1,6 @@
 // Canonical session schema types
+export * from "./claude-code-sessions";
+
 export interface CanonicalSession {
   session_id: string;
   source_provider: "claude-code" | "opencode";

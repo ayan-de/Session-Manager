@@ -4,3 +4,5 @@ export async function healthCheck(): Promise<{ status: string }> {
   const res = await fetch(`${BASE_URL}/health`);
   return res.json();
 }
+
+export { fetchClaudeCodeProjectSessions } from "./claude-code-sessions";
