@@ -3,7 +3,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 import tseslint from "typescript-eslint";
 import prettier from "eslint-config-prettier";
 
-const eslintConfig = tseslint.config(
+const eslintConfig = [
   ...tseslint.configs.recommended,
   {
     files: ["**/*.{ts,tsx}"],
@@ -39,7 +39,7 @@ const eslintConfig = tseslint.config(
   {
     ignores: [".next/**", "out/**", "build/**", "next-env.d.ts", "src-tauri/target/**"],
   },
-  prettier
-);
+  prettier,
+];
 
 export default eslintConfig;
