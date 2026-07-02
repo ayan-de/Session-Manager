@@ -15,6 +15,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,css,json,md}\" --ignore-path .gitignore",
     "format:check": "prettier --check \"**/*.{ts,tsx,css,json,md}\" --ignore-path .gitignore",
     "frontend": "npm run dev -w apps/desktop",
+    "backend": "go -C services/backend run cmd/backend/main.go",
     "desktop": "npm run tauri dev -w apps/desktop",
     "prepare": "husky"
   },
