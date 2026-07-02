@@ -1,26 +1,50 @@
 @import 'tailwindcss';
 
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-border-subtle: var(--border-subtle);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-hover-subtle: var(--hover-subtle);
+  --color-accent-blue: #3b82f6;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #0a0b0d;
+  --secondary: #12141a;
+  --text-main: #e2e8f0;
+  --text-muted: #64748b;
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --bg-subtle: rgba(255, 255, 255, 0.05);
+  --hover-subtle: rgba(255, 255, 255, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  button {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  button:focus,
+  button:active,
+  button:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  body {
+    background-color: var(--primary);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
 }
